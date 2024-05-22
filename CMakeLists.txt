@@ -12,13 +12,18 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 Qt5 COMPONENTS Core Network REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Network REQUIRED)
 
-add_library(TcpDataTransmitter STATIC
-  ProtocolFormatSrings.h
-  ProtocolFormatSrings.cpp
-  TcpDataTransmitter.h
-  TcpDataTransmitter.cpp
+set(PROJECT_SOURCES
+    include/ProtocolFormatSrings.h
+    include/TcpDataTransmitter.h
+    src/ProtocolFormatSrings.cpp
+    src/TcpDataTransmitter.cpp
 )
 
+add_library(TcpDataTransmitter STATIC
+    ${PROJECT_SOURCES}
+)
+
+target_include_directories(TcpDataTransmitter PUBLIC include/)
 target_link_libraries(TcpDataTransmitter PRIVATE Qt${QT_VERSION_MAJOR}::Core PRIVATE Qt${QT_VERSION_MAJOR}::Network)
 
-target_compile_definitions(TcpDataTransmitter PRIVATE TCPDATATRANSMITTER_LIBRARY)
+#target_compile_definitions(TcpDataTransmitter PRIVATE TCPDATATRANSMITTER_LIBRARY)
