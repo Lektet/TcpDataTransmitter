@@ -2,6 +2,8 @@
 
 #include <QDataStream>
 
+#include <QDebug>
+
 qint32 ArrayToInt(QByteArray source)
 {
     qint32 temp;
@@ -31,8 +33,8 @@ bool TcpDataTransmitter::sendData(const QByteArray &data, QTcpSocket &tcpSocket)
 
 }
 
-QByteArray TcpDataTransmitter::receiveData(QTcpSocket& tcpSocket){
-    QByteArray data;
+std::vector<QByteArray> TcpDataTransmitter::receiveData(QTcpSocket& tcpSocket){
+    std::vector<QByteArray> data;
     QByteArray buffer;
     qint32 size = 0;
 
@@ -48,7 +50,7 @@ QByteArray TcpDataTransmitter::receiveData(QTcpSocket& tcpSocket){
             }
             if (size > 0 && buffer.size() >= size)
             {
-                data = buffer.mid(0, size);
+                data.push_back(buffer.mid(0, size));
                 buffer.remove(0, size);
                 size = 0;
             }

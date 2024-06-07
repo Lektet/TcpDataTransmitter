@@ -4,9 +4,11 @@
 #include <QByteArray>
 #include <QTcpSocket>
 
+#include <vector>
+
 namespace TcpDataTransmitter {
 bool sendData(const QByteArray& data, QTcpSocket& tcpSocket);
-QByteArray receiveData(QTcpSocket& tcpSocket);
+std::vector<QByteArray> receiveData(QTcpSocket& tcpSocket);
 }
 
 
