@@ -23,5 +23,3 @@ add_library(TcpDataTransmitter STATIC
 
 target_include_directories(TcpDataTransmitter PUBLIC include/)
 target_link_libraries(TcpDataTransmitter PRIVATE Qt${QT_VERSION_MAJOR}::Core PRIVATE Qt${QT_VERSION_MAJOR}::Network)
-
-#target_compile_definitions(TcpDataTransmitter PRIVATE TCPDATATRANSMITTER_LIBRARY)
