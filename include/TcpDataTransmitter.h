@@ -7,7 +7,7 @@
 #include <vector>
 
 namespace TcpDataTransmitter {
-bool sendData(const QByteArray& data, QTcpSocket& tcpSocket);
+bool sendData(QByteArray data, QTcpSocket& tcpSocket);
 std::vector<QByteArray> receiveData(QTcpSocket& tcpSocket);
 }
 

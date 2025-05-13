@@ -20,10 +20,10 @@ QByteArray IntToArray(qint32 source)
     return temp;
 }
 
-bool TcpDataTransmitter::sendData(const QByteArray &data, QTcpSocket &tcpSocket)
+bool TcpDataTransmitter::sendData(QByteArray data, QTcpSocket &tcpSocket)
 {
     if(tcpSocket.state() == QTcpSocket::ConnectedState){
-        tcpSocket.write(IntToArray(data.size()));
+        data.prepend(IntToArray(data.size()));
         tcpSocket.write(data);
         return tcpSocket.waitForBytesWritten();
     }
@@ -56,6 +56,5 @@ std::vector<QByteArray> TcpDataTransmitter::receiveData(QTcpSocket& tcpSocket){
             }
         }
     }
-
     return data;
 }
